@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
+import { searchWeb } from "./api/search.js";
 import {
   Search,
   Sparkles,
@@ -85,9 +86,7 @@ export default function App() {
         setResults(data.results || []);
         setAiPowered(Boolean(data.aiPowered));
       } else {
-        const { data } = await axios.get(`${API}/api/search`, {
-          params: { q: clean, category },
-        });
+        const data = await searchWeb(clean, category);
         setResults(data.results || []);
       }
     } catch (err) {
