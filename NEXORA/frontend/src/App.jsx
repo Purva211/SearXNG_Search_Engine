@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import { searchWeb } from "./api/search.js";
+import { API_BASE_URL, searchWeb } from "./api/search.js";
 import {
   Search,
   Sparkles,
@@ -18,7 +18,6 @@ import {
   Command,
 } from "lucide-react";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
 const tabs = [
   { id: "general", label: "Web", icon: Globe2 },
   { id: "images", label: "Images", icon: ImageIcon },
@@ -79,7 +78,7 @@ export default function App() {
     );
     try {
       if (useAI) {
-        const { data } = await axios.post(`${API}/api/ai-search`, {
+        const { data } = await axios.post(`${API_BASE_URL}/api/ai-search`, {
           query: clean,
         });
         setAnswer(data.answer);
