@@ -1,0 +1,22 @@
+services:
+  - type: pserv
+    name: nexora-searxng
+    runtime: docker
+    region: oregon
+    plan: free
+    dockerfilePath: ./NEXORA/Dockerfile.searxng
+    dockerContext: ./NEXORA
+    envVars:
+      - key: SEARXNG_SECRET
+        generateValue: true
+      - key: SEARXNG_VALKEY_URL
+        fromService:
+          type: keyvalue
+          name: nexora-valkey
+          property: connectionString
+
+  - type: keyvalue
+    name: nexora-valkey
+    region: oregon
+    plan: free
+    ipAllowList: []
