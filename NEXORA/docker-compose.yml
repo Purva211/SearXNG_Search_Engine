@@ -1,0 +1,23 @@
+name: nexora-search
+services:
+  core:
+    container_name: nexora-searxng
+    image: docker.io/searxng/searxng:latest
+    restart: unless-stopped
+    ports:
+      - "54321:8080"
+    volumes:
+      - ./core-config:/etc/searxng
+      - searxng-cache:/var/cache/searxng
+    depends_on:
+      - valkey
+  valkey:
+    container_name: nexora-valkey
+    image: docker.io/valkey/valkey:9-alpine
+    restart: unless-stopped
+    command: valkey-server --save 300 1 --save 60 1000 --loglevel warning
+    volumes:
+      - valkey-data:/data
+volumes:
+  searxng-cache:
+  valkey-data:
