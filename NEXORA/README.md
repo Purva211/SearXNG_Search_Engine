@@ -76,6 +76,10 @@ Health check: `http://localhost:5000/api/health`
 
 The backend defaults to `SEARXNG_URL=http://localhost:54321` because it runs directly on Windows. If you later put the backend inside Docker Compose, change this to `http://core:8080` (the Compose service name and internal port).
 
+### Render deployment configuration
+
+For the deployed frontend, set `VITE_API_URL` to `https://searxng-searchengine.onrender.com`. On the backend service, set `CLIENT_ORIGIN` to `https://searxng-search-engine-3.onrender.com` and `SEARXNG_URL` to the base URL of a SearXNG instance reachable by the backend. Do not use `localhost` for a service hosted separately on Render. Check `/api/health`; its `searxng` field shows the configured upstream URL.
+
 ## 3. Start the React frontend
 
 Open a **third CMD** window:
