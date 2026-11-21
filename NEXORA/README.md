@@ -80,7 +80,7 @@ The backend defaults to `SEARXNG_URL=http://localhost:54321` because it runs dir
 
 For the deployed frontend, set `VITE_API_URL` to `https://searxng-searchengine.onrender.com`. On the backend service, set `CLIENT_ORIGIN` to `https://searxng-search-engine-3.onrender.com` and `SEARXNG_URL` to the base URL of a SearXNG instance reachable by the backend. Do not use `localhost` for a service hosted separately on Render. Check `/api/health`; its `searxng` field shows the configured upstream URL.
 
-The repository-root `render.yaml` adds a private SearXNG service and a Valkey Key Value service. Create a Render Blueprint from this repository and make the `region` in `render.yaml` match the existing backend service's region. After both services are live, copy the SearXNG private service address from Render's **Connect** panel and set the backend's `SEARXNG_URL` to `http://<private-service-host>:8080`. Redeploy the backend, then confirm `/api/health` reports that URL and `/api/search?q=test&category=general` returns JSON results.
+The repository-root `render.yaml` adds a free-plan SearXNG web service and a Valkey Key Value service. The free plan does not support private services, so SearXNG is publicly reachable. Create a Render Blueprint from this repository and make the `region` in `render.yaml` match the existing backend service's region. After both services are live, copy the SearXNG public URL from Render and set the backend's `SEARXNG_URL` to that base URL. Redeploy the backend, then confirm `/api/health` reports that URL and `/api/search?q=test&category=general` returns JSON results.
 
 ## 3. Start the React frontend
 
