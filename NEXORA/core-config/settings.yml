@@ -6,7 +6,7 @@ general:
 
 server:
   secret_key: "CHANGE_THIS_TO_A_LONG_RANDOM_SECRET"
-  limiter: false
+  limiter: false           # keep disabled
   image_proxy: true
 
 search:
@@ -14,19 +14,26 @@ search:
   autocomplete: ""
   default_lang: "en"
   formats:
-    - html
-    - json
+    - json                # required for the front‑end
+    - html                # optional, you can keep it
+
+# ---- ENGINE LIST -------------------------------------------------
+# Keep only the engines you actually need. Comment out the rest.
+engines:
+  - duckduckgo
+  - bing
+  - google
+  - wikipedia
+  # - ahmia          # <-- disabled (needs extra package)
+  # - torch          # <-- disabled (heavy PyTorch dependency)
+  # Add any other engines you want, one per line.
 
 valkey:
   url: false
-  
+
 outgoing:
   request_timeout: 4.0
   max_request_timeout: 8.0
-# ---- Enable JSON output -------------------------------------------------
-search:
-  formats:
-    - json          # <‑‑ this line is required for the front‑end
-# ---- Disable bot detection (avoids the X‑Forwarded‑For error) ---------
+
 bot_detection:
-  enabled: false    # turn off granian’s bot‑detection module
+  enabled: false          # turn off Granian’s bot‑detection module
