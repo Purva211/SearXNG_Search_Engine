@@ -2,6 +2,7 @@ use_default_settings: true
 
 general:
   instance_name: "NEXORA Search"
+  contact_url: "https://github.com/Purva211/SearXNG_Search_Engine"
 
 server:
   secret_key: "CHANGE_THIS_TO_A_LONG_RANDOM_SECRET"
@@ -17,5 +18,4 @@ search:
     - json
 
 valkey:
-  url: redis://valkey:6379/0
-
+  url: false
