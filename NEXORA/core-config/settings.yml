@@ -23,3 +23,10 @@ valkey:
 outgoing:
   request_timeout: 4.0
   max_request_timeout: 8.0
+# ---- Enable JSON output -------------------------------------------------
+search:
+  formats:
+    - json          # <‑‑ this line is required for the front‑end
+# ---- Disable bot detection (avoids the X‑Forwarded‑For error) ---------
+bot_detection:
+  enabled: false    # turn off granian’s bot‑detection module
